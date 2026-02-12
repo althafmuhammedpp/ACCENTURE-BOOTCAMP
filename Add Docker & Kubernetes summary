@@ -1,0 +1,38 @@
+DOCKER AND KUBERNETES
+
+Today I worked with Kubernetes using kubectl and Minikube on an EC2 instance. First, I checked the Kubernetes version and verified that the cluster was running properly. I created and managed pods using the nginx image, accessed the pod terminal, and learned how to view, describe, and delete pods.
+Next, I created a Deployment to manage multiple nginx pods automatically. I scaled the deployment to run multiple replicas and understood how Kubernetes maintains the desired number of pods. I also created a ConfigMap and Secret to store configuration values and sensitive data, and connected them to the deployment as environment variables.
+After that, I created a Service of type NodePort to expose the nginx application so it could be accessed through a browser using the Minikube IP and NodePort. Finally, I verified the setup by accessing the pod, printing environment variables, and confirming that the deployment, service, ConfigMap, and Secret were working correctly
+
+
+Important commands used:
+kubectl version – Shows kubectl client and Kubernetes server version.
+kubectl get pods – Shows all running pods in the cluster.
+kubectl get pods -n kube-system – Lists system pods in kube-system namespace.
+kubectl get pods -l app=nginx – Shows pods with label app=nginx.
+kubectl describe pod etcd-minikube -n kube-system – Shows detailed info about etcd-minikube pod.
+kubectl describe pod <pod-name> – Shows detailed information about a specific pod.
+kubectl run althaf-nginx --image=nginx – Creates and runs a pod using nginx image.
+kubectl exec -it althaf-nginx -- /bin/bash – Opens terminal inside the pod.
+kubectl exec -it <pod-name> -- /bin/sh – Opens shell inside running pod.
+kubectl exec -it <pod-name> -- /bin/sh -c 'echo $WELCOME_MSG' – Displays ConfigMap value inside pod.
+kubectl exec -it <pod-name> -- /bin/sh -c 'echo $ADMIN_PASSWORD' – Displays Secret value inside pod.
+kubectl delete pod althaf-nginx – Deletes the specified pod.
+kubectl delete pod <pod-name> – Deletes a specific pod.
+kubectl create deployment althaf-nginx --image=nginx – Creates a deployment using nginx image.
+kubectl delete deployment althaf-nginx – Deletes the deployment and its pods.
+kubectl scale deployment althaf-nginx --replicas=5 – Scales deployment to run 5 pods.
+kubectl apply -f nginx-configmap.yaml – Creates ConfigMap to store configuration values.
+kubectl apply -f nginx-secret.yaml – Creates Secret to store sensitive data like passwords.
+kubectl apply -f nginx-deployment.yaml – Creates Deployment and runs nginx pods using YAML file.
+kubectl apply -f nginx-service.yaml – Creates Service to expose nginx pods.
+kubectl get svc – Lists all services in the cluster.
+kubectl get svc nginx-service – Shows details of nginx-service including port and IP.
+kubectl rollout restart deployment nginx-deployment – Restarts deployment and recreates pods.
+kubectl cluster-info – Displays Kubernetes cluster information.
+minikube start – Starts local Kubernetes cluster.
+minikube ip – Shows Minikube cluster IP address.
+minikube service nginx-service --url – Shows URL to access nginx service in browser.
+
+CONCLUSION
+This task helped me understand how Kubernetes manages applications using Pods, Deployments, Services, ConfigMaps, and Secrets
